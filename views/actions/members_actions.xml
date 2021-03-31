@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="anggota_action" model="ir.actions.act_window">
+            <field name="name">Anggota Perpustakaan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('anggota', '=', True)]</field>
+            <field name="context">{"default_anggota":1}</field>
+            <field name="view_id" ref="anggota_kanban_view"/>
+        </record>
+        
+        <record id="action_kanban_view_anggota" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="anggota_kanban_view"/>
+            <field name="act_window_id" ref="anggota_action"/>
+        </record>
+        
+        <record id="action_tree_view_anggota" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="anggota_tree_view"/>
+            <field name="act_window_id" ref="anggota_action"/>
+        </record>
+        
+        <record id="action_form_view_anggota" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="anggota_form_view"/>
+            <field name="act_window_id" ref="anggota_action"/>
+        </record>
+    
+    </data>
+    
+
+</odoo>

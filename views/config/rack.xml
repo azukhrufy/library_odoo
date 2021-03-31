@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="lokasi_buku_tree_view" model="ir.ui.view">
+            <field name="name">lokasi.buku.tree</field>
+            <field name="model">stock.location</field>
+            <field name="arch" type="xml">
+                <tree string="Lokasi">
+                    <field name="display_name"/>
+                    <field name="location_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="lokasi_buku_form_view" model="ir.ui.view">
+            <field name="name">lokasi.buku.form</field>
+            <field name="model">stock.location</field>
+            <field name="arch" type="xml">
+                <form string="Lokasi">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="location_id" domain="[('lokasi_buku','=',True)]"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

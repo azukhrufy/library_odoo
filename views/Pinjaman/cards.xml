@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="view_kartu_perpustakaan_tree" model="ir.ui.view">
+            <field name="name">Kartu Perpustakaan Tree</field>
+            <field name="model">kartu.perpustakaan</field>
+            <field name="arch" type="xml">
+                <tree string="Kartu Perpustakaan">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_kartu_perpustakaan_form" model="ir.ui.view">
+            <field name="name">Kartu Perpustakaan Form</field>
+            <field name="model">kartu.perpustakaan</field>
+            <field name="arch" type="xml">
+                <form string="Kartu Perpustakaan">
+                    <header>
+                        <button name="kartu_confirm" type="object" states="draft" string="Confirm" class="oe_highlight" groups="library_odoo.group_petugas_perpus"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Books Line">
+                                <field colspan="4" name="kartu_lines" nolabel="1" widget="one2many_list">
+                                    <tree string="" editable="top">
+                                        <field name="product_id"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="duration"/>
+                                        <field name="state"/>
+                                        <button name="pinjaman_confirm" type="object" states="draft" string="Confirm" icon="fa-check-square"/>
+                                        <button name="pinjaman_done" type="object" states="rent" string="Done" icon="fa-mail-reply"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group string="Notes">
+                            <field name="note" colspan="4" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

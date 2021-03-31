@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="penulis_tree_view" model="ir.ui.view">
+            <field name="name">penulis.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Penulis">
+                    <field name="display_name" string="Name"/>
+                    <field name="street"/>
+                    <field name="mobile"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="penulis_form_view" model="ir.ui.view">
+            <field name="name">penulis.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form string="Penulis">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}'/>
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name" required="1"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <label for="street" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}' context="{'country_id': country_id, 'zip': zip}"/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                                <field name="website" widget="url" placeholder="e.g. www.odoo.com"/>
+                            </group>
+                            <group>
+                                <field name="phone" widget="phone"/>
+                                <field name="mobile" widget="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="lang"/>
+                            </group>
+                        </group>
+                        <group col="4" string="Biography">
+                            <field name="born_date"/>
+                            <field name="death_date"/>
+                            <field name="biography" colspan="4"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="penulis_kanban_view">
+            <field name="name">penulis.perpustakaan.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="title"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="mobile"/>
+                    <field name="street"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="image_small"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <t t-if="record.image_small.raw_value">
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_medium', record.id.raw_value)}')"/>
+                                </t>
+                                <div class="oe_kanban_details">
+                                    <strong class="oe_partner_heading"><field name="display_name"/></strong>
+                                    <ul>
+                                        <li t-if="record.mobile.raw_value"><field name="mobile"/></li>
+                                        <li t-if="record.street.raw_value"><field name="street"/></li>
+                                        <li t-if="record.city.raw_value and record.country_id.raw_value"><field name="city"/>,
+                                            <field name="country_id"/></li>
+                                        <li t-if="record.email.raw_value" class="o_text_overflow"><field name="email"/></li>
+                                    </ul>
+                                    <div class="oe_kanban_partner_links"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        <record id="penulis_action" model="ir.actions.act_window">
+            <field name="name">Penulis Perpustakaan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('penulis', '=', True)]</field>
+            <field name="context">{"default_penulis":1}</field>
+            <field name="view_id" ref="penulis_kanban_view"/>
+        </record>
+        
+        <record id="action_kanban_view_penulis" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="penulis_kanban_view"/>
+            <field name="act_window_id" ref="penulis_action"/>
+        </record>
+        
+        <record id="action_tree_view_penulis" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="penulis_tree_view"/>
+            <field name="act_window_id" ref="penulis_action"/>
+        </record>
+        
+        <record id="action_form_view_penulis" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="penulis_form_view"/>
+            <field name="act_window_id" ref="penulis_action"/>
+        </record>
+        
+        <menuitem id="submenu_penulis" name="Penulis" parent="menu_perpustakaan_config" action="penulis_action"/>
+    
+    </data>
+    
+
+</odoo>

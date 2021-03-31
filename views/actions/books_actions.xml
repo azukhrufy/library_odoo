@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <!-- ACTION UNTUK MENU INFORMASI / BUKU (INFORMATION / BOOKS) -->
+        
+        <!-- membuat action untuk menu menampilkan buku -->
+        
+        <record id="buku_buku_action" model="ir.actions.act_window">
+            <field name="name">Buku</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="buku_kanban_view"/>
+        </record>
+
+        <!-- untuk update untuk kanban agar ditampilkan pertama dalam modul perpustakaan -->
+        <record id="action_kanban_view_buku" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="buku_kanban_view"/>
+            <field name="act_window_id" ref="buku_buku_action"/>
+        </record>
+
+        <!-- agar view bawaan dari product.product bisa di update sesuai yang telah di tambahkan pada model -->
+
+        <record id="action_tree_view_buku" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="buku_tree_view"/>
+            <field name="act_window_id" ref="buku_buku_action"/>
+        </record>
+
+        <record id="action_form_view_buku" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="buku_form_view"/>
+            <field name="act_window_id" ref="buku_buku_action"/>
+        </record>
+    
+    </data>
+
+</odoo>

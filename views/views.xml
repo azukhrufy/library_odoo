@@ -1,0 +1,55 @@
+<odoo>
+  <data>
+
+  <!-- Menu Perpustakaan -->
+  
+  <menuitem id="menubar_perpustakaan" name="Perpustakaan" web_icon="library_odoo,static/description/icon.png"/> />
+
+  <!-- Menu Informasi -->
+  
+  <menuitem id="menu_perpustakaan" name="Informasi" parent="menubar_perpustakaan"/>
+
+  <!-- Sub Menu Buku -->
+  <menuitem id="submenu_books" name="Buku" parent="menu_perpustakaan" action="buku_buku_action"/>
+
+  <!-- Sub Menu Members / Anggota -->
+  <menuitem id="submenu_members" name="Anggota" parent="menu_perpustakaan" action="anggota_action"/>
+
+
+
+
+
+  <!-- Menu Pinjaman -->
+  <menuitem id="menu_perpustakaan_pinjam" name="Pinjaman" parent="menubar_perpustakaan"/>
+
+  <!-- Sub Menu Buku Tersedia / Books Available -->
+  <menuitem id="submenu_books_tersedia" name="Buku Tersedia" parent="menu_perpustakaan_pinjam" action="buku_sedia_action"/>
+
+  <!-- Sub Menu Buku Tersewa / Books Rent -->
+  <menuitem id="submenu_books_tersewa" name="Buku Tersewa" parent="menu_perpustakaan_pinjam" action="buku_sewa_action"/>
+
+  <!-- Sub Menu Kartu Perpustakaan / Cards -->
+  <menuitem id="submenu_books_kartu" name="Kartu Perpustakaan" parent="menu_perpustakaan_pinjam" action="kartu_perpustakaan_action"/>
+
+  <!-- Sub Menu Daftar Pinjaman / Lenderlist -->
+  <menuitem id="submenu_books_daftar_pinjaman" name="Daftar Pinjaman" parent="menu_perpustakaan_pinjam" action="daftar_pinjaman_action"/>
+
+
+
+
+  <!-- Menu Config -->
+  <menuitem id="menu_perpustakaan_config" name="Konfigurasi" parent="menubar_perpustakaan"/>
+
+  <!--Sub Menu Rack -->
+  <menuitem id="submenu_config" name="Rak" parent="menu_perpustakaan_config" action="buku_lokasi_action"/>
+
+  <!--Sub Menu Category -->
+  <menuitem id="submenu_kategori" name="Kategori" parent="menu_perpustakaan_config" action="buku_kategori_action"/> 
+
+  <!-- Sub Menu Penerbit -->
+  <menuitem id="submenu_penerbit" name="Penerbit" parent="menu_perpustakaan_config" action="penerbit_action"/>
+
+
+
+  </data>
+</odoo>

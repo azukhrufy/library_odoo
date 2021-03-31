@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="view_kartu_perpustakaan_line_filter" model="ir.ui.view">
+            <field name="name">kartu.perpustakaan.line.select</field>
+            <field name="model">kartu.perpustakaan.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Daftar Pinjaman">
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Member" name="group_by_anggota" context="{'group_by': 'partner_id'}"/>
+                        <filter string="State" name="group_by_state" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_kartu_perpustakaan_line_tree" model="ir.ui.view">
+            <field name="name">Kartu Perpustakaan Line Tree</field>
+            <field name="model">kartu.perpustakaan.line</field>
+            <field name="arch" type="xml">
+                <tree string="Daftar Pinjaman" create="false" decoration-info="state == 'draft'" decoration-danger="state == 'rent'" decoration-muted="state == 'return'">
+                    <field name="nama_kartu"/>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="duration"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

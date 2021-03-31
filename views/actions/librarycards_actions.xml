@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+         <record model="ir.actions.act_window" id="kartu_perpustakaan_action">
+            <field name="name">Kartu Perpustakaan</field>
+            <field name="res_model">kartu.perpustakaan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- tags xml untuk sequence yang diakses oleh method create melalui librarycards -->
+        
+        <record id="seq_kartu_perpustakaan_new" model="ir.sequence">
+            <field name="name">Kartu Perpustakaan</field>
+            <field name="code">kartu.perpustakaan</field>
+            <field name="prefix">KP/%(y)s/%(month)s/</field>
+            <field name="padding">5</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

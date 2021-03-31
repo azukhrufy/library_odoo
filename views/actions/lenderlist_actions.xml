@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record model="ir.actions.act_window" id="daftar_pinjaman_action">
+            <field name="name">Daftar Pinjaman</field>
+            <field name="res_model">kartu.perpustakaan.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'search_default_state': 'rent'}</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>
